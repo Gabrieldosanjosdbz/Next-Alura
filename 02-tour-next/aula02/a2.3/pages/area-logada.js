@@ -3,14 +3,21 @@ import { useRouter } from 'next/router';
 import nookies from 'nookies';
 
 export async function getServerSideProps(context) {
+  // Diferentemente do area-logada-static, essa página é renderizada em tempo de servidor
+  // Ou seja, sempre que essa pagina é acessada ou renderizada, seus dados renderizam novamente
+
   const cookies = nookies.get(context);
-  console.log('Cookies', cookies);
+  console.log('Cookies', cookies)
+  console.log('Contexto', context)
+  
   const SENHA_SECRETA = '123456';
   const senhaInformadaPeloUsuario = cookies.SENHA_SECRETA;
   const isAutorizado = SENHA_SECRETA === senhaInformadaPeloUsuario;
   
   if(!isAutorizado) {
     console.log('NÃO Autorizado!!!');
+
+    // Fazendo a autenticação com getServerSideProps utilizando cookies
     return {
       redirect: {
         permanent: false,
@@ -21,11 +28,13 @@ export async function getServerSideProps(context) {
 
   console.log('Autorizado!!!');
   return {
-    props: {}
+    props: { // Aqui é onde você coloca os dados que quer passar para o componente, igual o getStaticProps 
+
+    }   
   }
 }
 
-export default function LoggedScreen(props) {
+export default function LoggedScreen(props) { // Os dados que vem do retorno do getServerSideProps
   const router = useRouter();
   return (
     <Box

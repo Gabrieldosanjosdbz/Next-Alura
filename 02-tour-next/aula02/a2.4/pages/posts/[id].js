@@ -14,6 +14,9 @@ export async function getStaticPaths() {
   return {
     // paths: paths,
     paths: [],
+    // caso fallback seja false, ele só renderiza as rotas que estão dentro de Path (getStaticProps)
+    // caso esteja true, ele renderiza rotas que vem dinamicamente da url, porém do lado cliente (bom para colocar mensagem de loading). Depois ele salva em cache e as entrega na proxima vez como estática 
+    // caso esteja blocking, ele renderiza rotas que vem dinamicamente da url, mas do lado do servidor, ou seja, já entra a pagina pronta (melhor para CEO) 
     fallback: 'blocking' // false or 'blocking'
   };
 }
@@ -39,7 +42,7 @@ export async function getStaticProps(context) {
       date: post.date,
       content: post.content,
     }, 
-    revalidate: 60,
+    revalidate: 60, //a cada 60 segundos, ele refaz novamente o getStaticProps para ver se teve alguma alteração
   }
 }
 

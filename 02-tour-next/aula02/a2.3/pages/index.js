@@ -7,7 +7,7 @@ import nookies from 'nookies';
 export default function HomeScreen() {
   const [senha, setSenha] = React.useState('12345');
   const router = useRouter();
-  console.log('HomeScreen', router);
+  // console.log('HomeScreen', router);
   return (
     <Box
       styleSheet={{
@@ -29,7 +29,7 @@ export default function HomeScreen() {
               maxAge: 30 * 24 * 60 * 60,
               path: '/',
             });
-            router.push('/area-logada');
+            router.push('/area-logada-static');  //semelhante ao navigate (useNavigate)
           } else {
             alert('Informe uma senha!');
           }

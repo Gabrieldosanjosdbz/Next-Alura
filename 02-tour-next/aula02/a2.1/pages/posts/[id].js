@@ -17,13 +17,13 @@ export async function getStaticPaths() {
   console.log('paths:', paths);
 
   return {
-    paths: paths,
+    paths: paths, //o nome sempre tem que ser paths, que é um array de rotas
     fallback: false // false or 'blocking'
   };
 }
 
 export async function getStaticProps(context) {
-  console.log('Contexto', context.params.id);
+  console.log('Contexto', context);
   const id = context.params.id;
 
   const post = dados.posts.find((currentPost) => {
@@ -36,7 +36,7 @@ export async function getStaticProps(context) {
   console.log(post);
 
   return {
-    props: {
+    props: {            // o nome sempre tem que ser props, que é a propriedade com os dados que vamos passar para o componente
       id: post.id,
       title: post.title,
       date: post.date,
@@ -45,7 +45,7 @@ export async function getStaticProps(context) {
   }
 }
 
-export default function PostByIdScreen(props) {
+export default function PostByIdScreen(props) { // este argumento props é o mesmo objeto props que está sendo retornado no getStaticPropsZ
   // console.log(props);
   const router = useRouter();
   // console.log(router);

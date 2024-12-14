@@ -41,7 +41,10 @@ export function getStaticProps(ctx) {
   const cookies = nookies.get(ctx);
 
   // Cookies NÃO existem em build time
+  // Cookies sempre ficará zerado, porque essa página só é carregada em tempo de build e depois nunca mais 
+  // Ou seja, os cookies foram gerados em tempo de build, zerados como padrão, e ficarão assim pra sempre até dar outro build 
   console.log('[static] Cookies', cookies);
+  console.log('[static] Context', ctx)
   
   
   return {
