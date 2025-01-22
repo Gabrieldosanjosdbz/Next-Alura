@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  console.log('Contexto', context);
+  console.log('Contexto: ', context);
   const id = context.params.id;
 
   const post = dados.posts.find((currentPost) => {
@@ -33,7 +33,7 @@ export async function getStaticProps(context) {
     return false;
   })
 
-  console.log(post);
+  console.log('post:', post);
 
   return {
     props: {            // o nome sempre tem que ser props, que é a propriedade com os dados que vamos passar para o componente
@@ -46,7 +46,8 @@ export async function getStaticProps(context) {
 }
 
 export default function PostByIdScreen(props) { // este argumento props é o mesmo objeto props que está sendo retornado no getStaticPropsZ
-  // console.log(props);
+  console.log('props: ',props);
+  
   const router = useRouter();
   // console.log(router);
   const post = {
