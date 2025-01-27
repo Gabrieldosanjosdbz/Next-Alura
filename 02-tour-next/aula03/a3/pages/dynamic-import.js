@@ -17,6 +17,7 @@ export default function DynamicImportPage() {
           }}
         />
       </p>
+      {/* aqui o YoutubeVideo só é importado quando isVisible fica true, ou sejá, quando seleciona o select */}
       {isVisible && <YouTubeVideo />}      
     </div>
   )

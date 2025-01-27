@@ -17,7 +17,7 @@ export async function getStaticPaths() {
   console.log('paths:', paths);
 
   return {
-    paths: paths, //o nome sempre tem que ser paths, que é um array de rotas
+    paths: paths, //o nome sempre tem que ser paths, que é um array de rotas, e sua prop é um array de objetos "params" com valor "id" 
     fallback: false // false or 'blocking'
   };
 }
